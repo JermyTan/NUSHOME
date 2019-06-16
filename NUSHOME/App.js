@@ -8,6 +8,9 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Header } from 'react-native'; 
+import { AppRegistry, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -17,24 +20,41 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+
+//Custom front end for the front page, just a prototype may include scroll-downs at a later point
+class HomeScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={styles.body}>
+        <Image source ={require("./photo.png")}
+          style={styles.logo}
+        />
+        <Text style={styles.Header}>Latest News</Text>
+        <Image source={require("./SampleEvent.jpg")}
+          style={styles.Event} />
+        <Image source={require("./SampleEvent.jpg")}
+          style={styles.Event2} />
+        <Image source={require("./banner.png")}
+          style={styles.Banner} />
+        <TouchableOpacity style={styles.Help} activeOpacity={0.5}>
+          <Image source={require("./help.png")}
+            style={styles.ImageIconStyle}
+          />
+          <View style={styles.SeparatorLine} />
+          <Text style={styles.TextStyle}> Ask For Help </Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
+export default HomeScreen;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    position: 'absolute',
+    right: 0,
+    backgroundColor: '#0000FF',
   },
   welcome: {
     fontSize: 20,
@@ -45,5 +65,82 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  logo: {
+    height: 100,
+    width: 100,
+    position: 'absolute',
+    right: 3,
+    top: 5,
+  },
+  body: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0000FF',
+  },
+  Header: {
+    fontSize: 25,
+    color: '#FFFFFF',
+    marginBottom: 3,
+    position: 'absolute',
+    left: 5,
+    top: "15%",
+  },
+  Help: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#D3D3D3',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 40,
+    width: 125,
+    borderRadius: 5,
+    margin: 5,
+    left: "18%",
+    top: "60%",
+  },
+  ImageIconStyle: {
+    padding: 10,
+    margin: 5,
+    height: 25,
+    width: 25,
+    resizeMode: 'stretch',
+  },
+  SeparatorLine: {
+    backgroundColor: '#fff',
+    width: 1,
+    height: 40,
+  },
+  TextStyle: {
+    color: '#fff',
+    marginBottom: 4,
+    marginRight: 20,
+  },
+  Event: {
+    flex: 1,
+    position: "absolute",
+    height: 300,
+    width: 150,
+    left: "1%",
+    top: "15%",
+    resizeMode: 'contain',
+  },
+  Event2: {
+    flex: 1,
+    position: "absolute",
+    height: 300,
+    width: 150,
+    left: "50%",
+    top: "15%",
+    resizeMode: 'contain',
+  },
+  Banner: {
+    position: "absolute",
+    height: 250,
+    width: 325,
+    left: "0%",
+    bottom: "0%",
+    resizeMode: 'contain',
   },
 });
