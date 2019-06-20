@@ -7,10 +7,20 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { StatusBar } from 'react-native';
+import {Platform, StyleSheet, View, Navigator, Text, SafeAreaView, ScrollView, Dimensions } from 'react-native';
 import { Header } from 'react-native'; 
 import { AppRegistry, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native';
+import { createDrawerNavigator, createAppContainer, DrawerItems } from 'react-navigation';
+import SettingScreen from './Screens/SettingScreen';
+import HomeScreen from './Screens/HomeScreen';
+import HouseScreen from './Screens/HouseScreen';
+import EventsPage from './Screens/EventsPage';
+import InterestGroupsPage from './Screens/InterestGroupsPage';
+import FacilitiesPage from './Screens/FacilitiesPage';
+import FAQPage from './Screens/FAQPage';
+import { Button } from 'react-native-elements';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -21,7 +31,49 @@ const instructions = Platform.select({
 
 type Props = {};
 
+
+const CustomDrawerComponent = (props) => (
+  <SafeAreaView style={{ flex: 1 }}>
+  <View style={{height:150, backgroundColor:'white', alignItems:'center', justifyContent: 'center'}}>
+    <Image source={require('./photo.png')} style={{height:120, width:120, borderRadius:60}} />
+  </View>
+    <ScrollView>
+      <DrawerItems {...props}/>
+    </ScrollView>
+  </SafeAreaView>
+) 
+
 //Custom front end for the front page, just a prototype may include scroll-downs at a later point
+
+const AppDrawerNavigator = createDrawerNavigator({
+ Home: {
+   screen: HomeScreen,
+ },
+ House: {
+  screen: HouseScreen,
+  },
+ "Interest Groups": {
+   screen: InterestGroupsPage,
+ },
+ Events: {
+   screen:EventsPage,
+ },
+ "Facilities & Equipments": {
+   screen: FacilitiesPage,
+ },
+ "General Matters & FAQ": {
+   screen: FAQPage,
+ },
+ Settings: {
+   screen: SettingScreen,
+ },
+}, {
+  contentComponent: CustomDrawerComponent,
+}
+);
+
+const Drawer = createAppContainer(AppDrawerNavigator);
+/*
 class HomeScreen extends Component {
   render() {
     return (
@@ -46,9 +98,15 @@ class HomeScreen extends Component {
       </View>
     );
   }
-}
+}*/
 
-export default HomeScreen;
+export default class App extends React.Component {
+  render() {
+    return(
+      <Drawer />
+    );
+  }
+} 
 
 const styles = StyleSheet.create({
   container: {
