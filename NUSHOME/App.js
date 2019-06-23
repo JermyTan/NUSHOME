@@ -18,13 +18,14 @@ import {
   ScrollView,
   Dimensions
 } from "react-native";
-import { Header } from "react-native";
 import { AppRegistry, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import {
   createDrawerNavigator,
   createAppContainer,
-  DrawerItems
+  DrawerItems,
+  createStackNavigator,
+  createSwitchNavigator,
 } from "react-navigation";
 import SettingScreen from "./Screens/SettingScreen";
 import HomeScreen from "./Screens/HomeScreen";
@@ -34,6 +35,8 @@ import InterestGroupsPage from "./Screens/InterestGroupsPage";
 import FacilitiesPage from "./Screens/FacilitiesPage";
 import FAQPage from "./Screens/FAQPage";
 import { Button } from "react-native-elements";
+import Login from './src/Component/Login/Login';
+import LoginForm from "./src/Component/Login/LoginForm";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -97,36 +100,19 @@ const AppDrawerNavigator = createDrawerNavigator(
 );
 
 const Drawer = createAppContainer(AppDrawerNavigator);
-/*
-class HomeScreen extends Component {
-  render() {
-    return (
-      <View style={styles.body}>
-        <Image source ={require("./photo.png")}
-          style={styles.logo}
-        />
-        <Text style={styles.Header}>Latest News</Text>
-        <Image source={require("./SampleEvent.jpg")}
-          style={styles.Event} />
-        <Image source={require("./SampleEvent.jpg")}
-          style={styles.Event2} />
-        <Image source={require("./banner.png")}
-          style={styles.Banner} />
-        <TouchableOpacity style={styles.Help} activeOpacity={0.5}>
-          <Image source={require("./help.png")}
-            style={styles.ImageIconStyle}
-          />
-          <View style={styles.SeparatorLine} />
-          <Text style={styles.TextStyle}> Ask For Help </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}*/
+
+const root = createSwitchNavigator({
+  "Login" :{
+    screen: Login
+  },
+  "Default": AppDrawerNavigator
+});
+
+const Test = createAppContainer(root);
 
 export default class App extends React.Component {
   render() {
-    return <Drawer />;
+    return <Test />;
   }
 }
 
