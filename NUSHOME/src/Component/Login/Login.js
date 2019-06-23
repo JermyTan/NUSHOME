@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Image, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 import LoginForm from "./LoginForm";
+import HomeScreen from '../../../Screens/HomeScreen'
+import { createStackNavigator, navigation, createAppContainer } from 'react-navigation';
+
 export default class Login extends React.Component {
     render() {
         return(
@@ -11,7 +14,11 @@ export default class Login extends React.Component {
                     <Text style = {styles.motto2}>CAMPUS LIFE</Text>
                 </View>
                 <View style={styles.formContainer}>
-                    <LoginForm />
+                <TextInput placeholder= "NUSNET ID" style={styles.input} returnKeyType="next" onSubmitEditing={() => this.passwordInput.focus()}/>
+                <TextInput placeholder="Password" style={styles.input} secureTextEntry returnKeyType="go" ref={(input) => this.passwordInput = input}/>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate("Home")}>
+                    <Text styles={styles.buttonText}>LOGIN</Text>
+                </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
         );
@@ -53,5 +60,22 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 15,
         fontFamily: "verdana",
+    },
+    input: {
+        height: 40,
+        backgroundColor: 'white',
+        marginBottom: 10,
+        color: 'black',
+        paddingHorizontal: 10,
+        textAlign: 'center',
+    },
+    buttonContainer: {
+        backgroundColor: '#EF7C00',
+        paddingVertical: 15,
+        alignItems: 'center', 
+    },
+    buttonText: {
+        color: 'black',
+        fontWeight: '700',
     },
 });
