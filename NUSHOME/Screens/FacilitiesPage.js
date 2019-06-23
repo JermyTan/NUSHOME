@@ -1,12 +1,29 @@
 import React, {Component} from 'react';
 import { StatusBar } from 'react-native';
-import {Platform, StyleSheet, View, Navigator, Text} from 'react-native';
+import {Platform, StyleSheet, View, Navigator, Text, Image, TouchableOpacity} from 'react-native';
 
+//Sign-up pages
 class FacilitiesPage extends React.Component {
     render() {
         return(
             <View style={styles.container}>
-                <Text>Facilities and Equipment booking page!</Text>
+                <Image source={require("../photo.png")} style={styles.logo}/>
+                <Text style={styles.header1}>Facilities &</Text>
+                <Text style={styles.header2}>Equipments</Text>
+                <Text style={styles.booking}>Make a booking</Text>
+                <TouchableOpacity style={styles.facilities}>
+                  <Text style={styles.button1}>Book Facilities</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.equipment}>
+                  <Text style={styles.button1}>Book Equipments</Text>
+                </TouchableOpacity>
+                <Text style={styles.record}>Records</Text>
+                <TouchableOpacity style={styles.current}>
+                  <Text style={styles.button2}>Current Bookings</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.complete}>
+                  <Text style={styles.button2}>Completed Bookings</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -16,19 +33,10 @@ export default FacilitiesPage;
 
 const styles = StyleSheet.create({
     container: {
-      position: 'absolute',
-      right: 0,
-      backgroundColor: '#0000FF',
-    },
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-    },
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 5,
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#003D7C',
     },
     logo: {
       height: 100,
@@ -37,74 +45,96 @@ const styles = StyleSheet.create({
       right: 3,
       top: 5,
     },
-    body: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#0000FF',
-    },
-    Header: {
-      fontSize: 25,
+    header1: {
+      fontSize: 35,
       color: '#FFFFFF',
       marginBottom: 3,
       position: 'absolute',
       left: 5,
-      top: "15%",
+      top: "2%",
     },
-    Help: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      backgroundColor: '#D3D3D3',
-      borderWidth: 0.5,
-      borderColor: '#fff',
-      height: 40,
-      width: 125,
-      borderRadius: 5,
-      margin: 5,
-      left: "18%",
-      top: "60%",
+    header2: {
+      fontSize: 35,
+      color: '#FFFFFF',
+      marginBottom: 3,
+      position: 'absolute',
+      left: 5,
+      top: "10%",
     },
-    ImageIconStyle: {
-      padding: 10,
-      margin: 5,
-      height: 25,
-      width: 25,
-      resizeMode: 'stretch',
+    booking : {
+      fontSize: 25,
+      color: '#FFFFFF',
+      position: 'absolute',
+      left: '22%',
+      top: '22%',
+      fontWeight: 'bold',
+      fontStyle: 'italic',
     },
-    SeparatorLine: {
-      backgroundColor: '#fff',
-      width: 1,
-      height: 40,
+    facilities: {
+      backgroundColor: '#EF7C00',
+      paddingVertical: 15,
+      position: 'absolute',
+      alignItems: 'center', 
+      width: 135,
+      height: 60,
+      borderRadius:10,
+      borderWidth: 1,
+      justifyContent: 'center',
+      left: "5%",
+      bottom: "55%",
     },
-    TextStyle: {
-      color: '#fff',
-      marginBottom: 4,
-      marginRight: 20,
+    button1: {
+      color: 'black',
+      fontWeight: '700',
+      fontSize: 15,
     },
-    Event: {
-      flex: 1,
-      position: "absolute",
-      height: 300,
-      width: 150,
-      left: "1%",
-      top: "15%",
-      resizeMode: 'contain',
+    equipment: {
+      backgroundColor: '#EF7C00',
+      paddingVertical: 15,
+      position: 'absolute',
+      alignItems: 'center', 
+      width: 135,
+      height: 60,
+      borderRadius:10,
+      borderWidth: 1,
+      justifyContent: 'center',
+      right: "5%",
+      bottom: "55%",
     },
-    Event2: {
-      flex: 1,
-      position: "absolute",
-      height: 300,
-      width: 150,
-      left: "50%",
-      top: "15%",
-      resizeMode: 'contain',
+    record: {
+      fontSize: 25,
+      color: '#FFFFFF',
+      position: 'absolute',
+      fontWeight: 'bold',
+      fontStyle: 'italic',
     },
-    Banner: {
-      position: "absolute",
-      height: 250,
-      width: 325,
-      left: "0%",
-      bottom: "0%",
-      resizeMode: 'contain',
+    current: {
+      backgroundColor: '#EF7C00',
+      paddingVertical: 15,
+      position: 'absolute',
+      alignItems: 'center', 
+      width: 300,
+      height: 70,
+      borderRadius: 10,
+      borderWidth: 1,
+      justifyContent: 'center',
+      top: "55%",
     },
-  });
+    button2: {
+      color: 'black',
+      fontWeight: '700',
+      fontSize: 20,
+    },
+    complete: {
+      backgroundColor: '#EF7C00',
+      paddingVertical: 15,
+      position: 'absolute',
+      alignItems: 'center', 
+      width: 300,
+      height: 70,
+      borderRadius: 10,
+      borderWidth: 1,
+      justifyContent: 'center',
+      top: "72%",
+    }
+});
