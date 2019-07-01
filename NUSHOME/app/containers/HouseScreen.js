@@ -1,12 +1,28 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Image } from "react-native";
-import { Container, Text } from "native-base";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Modal,
+  TouchableOpacity,
+  Dimensions
+} from "react-native";
+import { Container, Text, Button } from "native-base";
 import MyHeader from "../components/header";
+
+const WIDTH = Dimensions.get("window").width;
+const HEIGHT = Dimensions.get("window").height;
 
 export default class HouseScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isModalVisible: false
+    };
+  }
+
+  setModalVisible(isModalVisible) {
+    this.setState({ isModalVisible: isModalVisible });
   }
 
   render() {
@@ -18,23 +34,36 @@ export default class HouseScreen extends Component {
         <View style={styles.container}>
           <Text style={styles.header1}>Upcoming</Text>
           <Text style={styles.header2}>Events</Text>
+          <TouchableOpacity
+            style={styles.event}
+            onPress={() => this.setModalVisible(!this.state.isModalVisible)}
+          >
+            <Image
+              source={require("../assets/images/event1.png")}
+              style={styles.event}
+            />
+          </TouchableOpacity>
+        </View>
+        <Modal
+          animationType="fade"
+          transparent={false}
+          visible={this.state.isModalVisible}
+        >
+          <Button
+            onPress={() => this.setModalVisible(!this.state.isModalVisible)}
+          >
+            <Text>Close</Text>
+          </Button>
           <Image
             source={require("../assets/images/event1.png")}
-            style={styles.event}
+            style={{
+              flex: 1,
+              height: HEIGHT,
+              width: WIDTH,
+              resizeMode: "contain"
+            }}
           />
-          <Image
-            source={require("../assets/images/event2.png")}
-            style={styles.event2}
-          />
-          <Image
-            source={require("../assets/images/event3.png")}
-            style={styles.event3}
-          />
-          <Image
-            source={require("../assets/images/event4.png")}
-            style={styles.event4}
-          />
-        </View>
+        </Modal>
       </Container>
     );
   }

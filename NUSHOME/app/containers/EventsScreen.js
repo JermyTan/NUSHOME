@@ -1,12 +1,25 @@
 import React, { Component } from "react";
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Container, Text } from "native-base";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Modal,
+  TextInput
+} from "react-native";
+import { Container, Text, Button } from "native-base";
 import MyHeader from "../components/header";
 
 export default class EventsScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isModalVisible: false
+    };
+  }
+
+  setModalVisible(isModalVisible) {
+    this.setState({ isModalVisible: isModalVisible });
   }
 
   render() {
@@ -22,10 +35,38 @@ export default class EventsScreen extends Component {
             source={require("../assets/images/INS.png")}
             style={styles.event1}
           />
-          <TouchableOpacity style={styles.signup1}>
+          <TouchableOpacity
+            style={styles.signup1}
+            onPress={() => this.setModalVisible(!this.state.isModalVisible)}
+          >
             <Text style={styles.button1}>Sign up now!</Text>
           </TouchableOpacity>
         </View>
+        <Modal
+          animationType="fade"
+          transparent={false}
+          visible={this.state.isModalVisible}
+        >
+          <Button
+            onPress={() => this.setModalVisible(!this.state.isModalVisible)}
+          >
+            <Text>Close</Text>
+          </Button>
+          <View>
+            <TextInput
+              placeholder="Matriculation Number"
+              style={styles.input}
+              returnKeyType="go"
+              ref={input => (this.passwordInput = input)}
+            />
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => this.setModalVisible(!this.state.isModalVisible)}
+            >
+              <Text styles={styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
       </Container>
     );
   }
@@ -96,5 +137,22 @@ const styles = StyleSheet.create({
     left: "10%",
     top: "30%",
     resizeMode: "contain"
+  },
+  input: {
+    height: 40,
+    backgroundColor: "white",
+    marginBottom: 10,
+    color: "black",
+    paddingHorizontal: 10,
+    textAlign: "center"
+  },
+  buttonContainer: {
+    backgroundColor: "#EF7C00",
+    paddingVertical: 15,
+    alignItems: "center"
+  },
+  buttonText: {
+    color: "black",
+    fontWeight: "700"
   }
 });

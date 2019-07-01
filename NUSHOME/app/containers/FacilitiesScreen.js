@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { Container, Text } from "native-base";
 import MyHeader from "../components/header";
 
@@ -15,7 +15,7 @@ export default class FacilitiesScreen extends Component {
         <View>
           <MyHeader navigation={this.props.navigation} />
         </View>
-        <View style={styles.Container}>
+        <View style={styles.container}>
           <Text style={styles.header1}>Facilities &</Text>
           <Text style={styles.header2}>Equipments</Text>
           <Text style={styles.booking}>Make a booking</Text>
