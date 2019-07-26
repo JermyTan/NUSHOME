@@ -6,10 +6,22 @@ import {
   Text,
   KeyboardAvoidingView,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from "react-native";
 
+//for now we hard-code a login detail before we sync it with google firebase database
+const userInfo = { username: "e0303290", password: "password123" };
+
 export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: ""
+    };
+  }
+
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -26,7 +38,10 @@ export default class Login extends Component {
             placeholder="NUSNET ID"
             style={styles.input}
             returnKeyType="next"
+            onChangeText={username => this.setState({ username })}
+            value={this.state.username}
             onSubmitEditing={() => this.passwordInput.focus()}
+            autoCapitalize="none"
           />
           <TextInput
             placeholder="Password"
@@ -34,10 +49,13 @@ export default class Login extends Component {
             secureTextEntry
             returnKeyType="go"
             ref={input => (this.passwordInput = input)}
+            onChangeText={password => this.setState({ password })}
+            value={this.state.password}
           />
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={() => this.props.navigation.navigate("Home")}
+            //onPress={() => this.props.navigation.navigate("Home")}
+            onPress={this._login}
           >
             <Text styles={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
@@ -45,6 +63,19 @@ export default class Login extends Component {
       </KeyboardAvoidingView>
     );
   }
+
+  _login = async () => {
+    if (
+      userInfo.username === this.state.username &&
+      userInfo.password === this.state.password
+    ) {
+      //set the current async storage user's logged-in status as 1
+      await AsyncStorage.setItem("isLoggedIn", "1");
+      this.props.navigation.navigate("Home");
+    } else {
+      alert("Wrong password or username");
+    }
+  };
 }
 
 const styles = StyleSheet.create({
