@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   AsyncStorage
 } from "react-native";
+import firebase from "firebase";
 
 //for now we hard-code a login detail before we sync it with google firebase database
 const userInfo = { username: "e0303290", password: "password123" };
@@ -20,6 +21,21 @@ export default class Login extends Component {
       username: "",
       password: ""
     };
+    this._login = this._login.bind(this);
+  }
+
+  _login() {
+    const { username, password } = this.state;
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(username, password)
+      .then(user => {
+        //AsyncStorage.setItem("isLoggedIn", "1");
+        this.props.navigation.navigate("Home");
+      })
+      .catch(function(error) {
+        alert("Wrong login credentials");
+      });
   }
 
   render() {
@@ -63,19 +79,6 @@ export default class Login extends Component {
       </KeyboardAvoidingView>
     );
   }
-
-  _login = async () => {
-    if (
-      userInfo.username === this.state.username &&
-      userInfo.password === this.state.password
-    ) {
-      //set the current async storage user's logged-in status as 1
-      await AsyncStorage.setItem("isLoggedIn", "1");
-      this.props.navigation.navigate("Home");
-    } else {
-      alert("Wrong password or username");
-    }
-  };
 }
 
 const styles = StyleSheet.create({
