@@ -39,7 +39,6 @@ export default class MenuDrawer extends Component {
         <View style={styles.bottomLinks}>
           {this.naviLink("Home", "Home")}
           {this.naviLink("House", "House")}
-          {this.naviLink("Interest Groups", "Interest Groups")}
           {this.naviLink("Events", "Events")}
           {this.naviLink("Facilities & Equipments", "Facilities & Equipments")}
           {this.naviLink("General Matters & FAQ", "General Matters & FAQ")}

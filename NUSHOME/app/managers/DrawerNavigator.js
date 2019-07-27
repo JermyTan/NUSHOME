@@ -28,9 +28,6 @@ const DrawerNavigator = createDrawerNavigator(
     House: {
       screen: HouseScreen
     },
-    "Interest Groups": {
-      screen: InterestGroupsScreen
-    },
     Events: {
       screen: EventsScreen
     },
