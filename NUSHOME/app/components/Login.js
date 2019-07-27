@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import firebase from "firebase";
 import {
   StyleSheet,
   View,
@@ -7,9 +8,10 @@ import {
   KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from "react-native";
-import firebase from "firebase";
+import { CardSection } from "./CardSection";
 
 //for now we hard-code a login detail before we sync it with google firebase database
 const userInfo = { username: "e0303290", password: "password123" };
@@ -19,13 +21,37 @@ export default class Login extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      loading: false
     };
     this._login = this._login.bind(this);
+    this.renderButton = this.renderButton.bind(this);
+  }
+
+  renderButton() {
+    if (this.state.loading === true) {
+      return <ActivityIndicator size="large" />;
+    } else {
+      return (
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          //onPress={() => this.props.navigation.navigate("Home")}
+          onPress={this._login.bind(this)}
+        >
+          <Text styles={styles.buttonText}>LOGIN</Text>
+        </TouchableOpacity>
+      );
+    }
+  }
+
+  onLoginFail() {
+    alert("Wrong email or password");
+    this.setState({ loading: false });
   }
 
   _login() {
-    const { username, password } = this.state;
+    const { username, password, loading } = this.state;
+    this.setState({ loading: true });
     firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
@@ -33,9 +59,7 @@ export default class Login extends Component {
         //AsyncStorage.setItem("isLoggedIn", "1");
         this.props.navigation.navigate("Home");
       })
-      .catch(function(error) {
-        alert("Wrong login credentials");
-      });
+      .catch(this.onLoginFail.bind(this));
   }
 
   render() {
@@ -68,13 +92,7 @@ export default class Login extends Component {
             onChangeText={password => this.setState({ password })}
             value={this.state.password}
           />
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            //onPress={() => this.props.navigation.navigate("Home")}
-            onPress={this._login}
-          >
-            <Text styles={styles.buttonText}>LOGIN</Text>
-          </TouchableOpacity>
+          <View>{this.renderButton()}</View>
         </View>
       </KeyboardAvoidingView>
     );
@@ -128,7 +146,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#EF7C00",
     paddingVertical: 15,
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row"
   },
   buttonText: {
     color: "black",
