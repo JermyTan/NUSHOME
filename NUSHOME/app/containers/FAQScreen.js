@@ -11,7 +11,7 @@ const academicsDataArray = [
       "All JS modules are CS/CU (i.e., pass/fail). You can S/U the rest, including Capstone."
   },
   {
-    title: "What is the difference between bidding and balloting?",
+    title: "What is the difference between bidding\nand balloting?",
     content:
       "You will need to bid for your faculty modules and unrestricted electives (UEs). This is done through CORS, where you use points to get modules that you want. On the other hand, balloting is where you rank your choices, and the school will try to give you your top few choices. This is done for both CAPT modules, and for the tutorial slots for your faculty modules (after you have successfully gotten your faculty modules)."
   }
@@ -29,7 +29,7 @@ const bookingOfFacilities = [
   },
   {
     title:
-      "What are the criteria / requirements if I want to book a facility in CAPT?",
+      "What are the criteria / requirements if I\nwant to book a facility in CAPT?",
     content:
       "The event should be College or Neighbourhood-related (that is, you should not be booking for your faculty, etc.). You are however allowed to book the MPSH for personal use (games with friends) but the group using the MPSH must be majority (more than 50%) CAPTains. Please also make your booking a few weeks in advance."
   }
@@ -48,12 +48,12 @@ const diningHall = [
   },
   {
     title:
-      "Oh no, I need to leave very early and the Dining Hall isn’t open in time! What to do?",
+      "Oh no, I need to leave very early and\nthe Dining Hall isn’t open in time! What\nto do?",
     content:
       "Not to worry, you can make a request for an early breakfast (served at 6:30am)! You may approach Dining Hall Assistant Managers, they can be found in the Dining Hall during meal hours. You will need to make the request at least two days in advance!"
   },
   {
-    title: "Oh no, I missed a meal! Can I claim it at another time?",
+    title: "Oh no, I missed a meal! Can I claim it\nat another time?",
     content:
       "Yes! You can have your meal credits carried forward for up to 2 weeks before they are forfeited. However, note that you can only tap a maximum of 3 times per meal each day."
   },
@@ -63,7 +63,7 @@ const diningHall = [
       "You can tap your card at the card reader near the entrance of the food serving area in the dining hall (next to the computer). You will then receive a coupon, which you place in the bowl at the counter for whichever cuisine you want."
   },
   {
-    title: "What kinds of meals are provided in the Dining Hall?",
+    title: "What kinds of meals are provided in\nthe Dining Hall?",
     content:
       "Chinese, Indian, Malay and Western cuisines are provided (you will need to use one coupon for each serving). There is also a free-flow of drinks and side dishes (such as soup or salad)."
   },
@@ -73,7 +73,7 @@ const diningHall = [
       "Yes there is! There is a Telegram bot created by a very talented CAPTain, and you can find it at @rcmealbot."
   },
   {
-    title: "Can I check how many meal credits I have left?",
+    title: "Can I check how many meal credits I\nhave left?",
     content: "Yes you can! You can use the RC Meal Bot as stated above!"
   }
 ];
@@ -98,7 +98,7 @@ const theFlyingSeed = [
       "The Flying Seed is the CAPT common lounge located on L1, right outside the lifts. Facilities include a TV, a piano, and a printing / photocopying station."
   },
   {
-    title: "Do I need to book the Flying Seed to use the TV?",
+    title: "Do I need to book the Flying Seed to use\nthe TV?",
     content:
       "No you don’t have to! But please also be considerate when you are using the TV. Bring down your own VGA or HDMI cable."
   }
@@ -112,7 +112,7 @@ const lifts = [
   },
   {
     title:
-      "Oops I accidentally pressed a button / I changed my mind. How do I unpress a lift button?",
+      "Oops I accidentally pressed a button /\nI changed my mind. How do I unpress a\nlift button?",
     content:
       "No worries! You can always cancel any level by holding the button for the respective level while the lift door is open."
   }
@@ -130,7 +130,7 @@ const laundryRooms = [
       "If you run out of coins, coin changing machines are available in the laundry room on Levels 8 and 14. You can also ask your friends!"
   },
   {
-    title: "How long does the washing machine and dryer take?",
+    title: "How long does the washing machine\nand dryer take?",
     content:
       "The washing machine takes 3 minutes, while the dryer takes 40 minutes!"
   }
@@ -220,7 +220,7 @@ const newInitiatives = [
   },
   {
     title:
-      "I have an idea for an event/engagement opportunity/project! How do I proceed?",
+      "I have an idea for an event/engagement\nopportunity/project! How do I proceed?",
     content:
       "Do you have an awesome idea you’d like to carry out? First steps of starting something new is definitely approaching like-minded individuals and talking to seniors (RAs, CSC members, House Heads etc.) to get a better picture on how your initiative can be created within CAPT. Do take note of the college’s emphasis on Active Citizenship and Community Engagement when you set out to formulate a new initiative. Once you have a plan, you can approach the relevant Director if it clearly falls under their purview. (e.g. approach the Director of ACE or SI if your initiative involves a project with a new partner)"
   }
@@ -229,7 +229,7 @@ const newInitiatives = [
 const misc = [
   {
     title:
-      "What do I do if I lost my matriculation card? Can I still get into CAPT?",
+      "What do I do if I lost my matriculation\ncard? Can I still get into CAPT?",
     content:
       "Approach OHS office for a temporary card which allows access. If its after office hours, contact the RA on duty (refer to signs outside the lifts on B1 and Level 1)."
   }

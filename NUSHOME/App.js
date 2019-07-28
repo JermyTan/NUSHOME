@@ -15,7 +15,6 @@ export default class App extends Component {
     };
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
-      alert("Initalising");
     }
   }
 

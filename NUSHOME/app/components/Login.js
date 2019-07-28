@@ -57,7 +57,11 @@ export default class Login extends Component {
       .signInWithEmailAndPassword(username, password)
       .then(user => {
         //AsyncStorage.setItem("isLoggedIn", "1");
-        this.props.navigation.navigate("Home");
+        if (username === "ngkester123@gmail.com" && password === "password") {
+          this.props.navigation.navigate("Admin");
+        } else {
+          this.props.navigation.navigate("Home");
+        }
       })
       .catch(this.onLoginFail.bind(this));
   }

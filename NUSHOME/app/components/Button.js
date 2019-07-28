@@ -1,18 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-const Button = props => {
-  const { buttonStyle, textStyle } = styles;
-
-  return (
-    <TouchableOpacity
-      onPress={props.onPress}
-      style={props.buttonStyle || buttonStyle}
-    >
-      <Text style={props.textStyle || textStyle}>{props.children}</Text>
-    </TouchableOpacity>
-  );
-};
+export default class Button extends Component {
+  render() {
+    const { buttonStyle, textStyle } = styles;
+    return (
+      <TouchableOpacity
+        onPress={this.props.onPress}
+        style={this.props.buttonStyle || buttonStyle}
+      >
+        <Text style={this.props.textStyle || textStyle}>
+          {this.props.children}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
+}
 
 const styles = {
   textStyle: {
@@ -34,5 +37,3 @@ const styles = {
     marginRight: 5
   }
 };
-
-export { Button };

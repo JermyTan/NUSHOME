@@ -1,11 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 import { View } from "react-native";
 
-const CardSection = props => {
-  return (
-    <View style={[styles.containerStyle, props.style]}>{props.children}</View>
-  );
-};
+export default class CardSection extends Component {
+  render() {
+    return (
+      <View style={[styles.containerStyle, this.props.style]}>
+        {this.props.children}
+      </View>
+    );
+  }
+}
 
 const styles = {
   containerStyle: {
@@ -18,5 +22,3 @@ const styles = {
     position: "relative"
   }
 };
-
-export { CardSection };

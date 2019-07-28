@@ -32,7 +32,6 @@ export default class MyHeader extends Component {
         <View style={{ justifyContent: "center" }}>
           <Image
             style={{
-              //flex: 1,
               resizeMode: "contain",
               width: WIDTH * 0.7
             }}
