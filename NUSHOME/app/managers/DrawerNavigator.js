@@ -25,12 +25,6 @@ const DrawerNavigator = createDrawerNavigator(
     Home: {
       screen: HomeScreen
     },
-    House: {
-      screen: HouseScreen
-    },
-    Events: {
-      screen: EventsScreen
-    },
     "Facilities & Equipments": {
       screen: FacilitiesScreen
     },

@@ -1,81 +1,71 @@
 import React, { Component } from "react";
-import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { Container, Text } from "native-base";
+import { FlatList, ActivityIndicator } from "react-native";
+import { Container } from "native-base";
 import MyHeader from "../components/header";
+import Event from "../components/Event";
+import firebase from "firebase";
 
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      events: [],
+      isFetching: false
+    };
+  }
+
+  getEvents() {
+    this.setState({ isFetching: true });
+    firebase
+      .database()
+      .ref("events")
+      .on("value", data => this.retrieveData(data));
+  }
+
+  retrieveData(data) {
+    const event = data.val();
+    const keys = Object.keys(event);
+    const events = [];
+    for (let i = 0; i < keys.length; i++) {
+      let k = keys[i];
+      let eventDetails = {
+        isSignedUp: event[k].SignedUp,
+        title: event[k].Title,
+        url: event[k].Image,
+        dateTime: event[k].Date,
+        venue: event[k].Venue,
+        description: event[k].Description
+      };
+      events.push(eventDetails);
+      //check if it works first
+    }
+    this.setState({ events: events, isFetching: false });
+  }
+
+  componentWillMount() {
+    this.getEvents();
+  }
+
+  renderPage() {
+    if (this.state.isFetching) {
+      return <ActivityIndicator size="large" />;
+    } else {
+      return (
+        <FlatList
+          data={this.state.events}
+          renderItem={({ item }) => <Event event={item} />}
+          keyExtractor={item => item.title}
+        />
+      );
+    }
   }
 
   render() {
     return (
       <Container>
-        <View>
-          <MyHeader navigation={this.props.navigation} />
-        </View>
-        <View style={styles.container}>
-          <Text style={styles.header}>Latest News</Text>
-          <Image
-            source={require("../assets/images/home_event.jpg")}
-            style={styles.Event}
-          />
-          <Image
-            source={require("../assets/images/event2.png")}
-            style={styles.Event2}
-          />
-          <Image
-            source={require("../assets/images/banner.png")}
-            style={styles.Banner}
-          />
-        </View>
+        <MyHeader navigation={this.props.navigation} />
+        {this.renderPage()}
       </Container>
     );
   }
 }
-
-module.export = HomeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#003D7C"
-  },
-  header: {
-    fontSize: 25,
-    color: "#FFFFFF",
-    marginBottom: 3,
-    position: "absolute",
-    left: 5,
-    top: "15%"
-  },
-  Event: {
-    flex: 1,
-    position: "absolute",
-    height: 300,
-    width: 150,
-    left: "1%",
-    top: "15%",
-    resizeMode: "contain"
-  },
-  Event2: {
-    flex: 1,
-    position: "absolute",
-    height: 300,
-    width: 150,
-    left: "50%",
-    top: "15%",
-    resizeMode: "contain"
-  },
-  Banner: {
-    position: "absolute",
-    height: 250,
-    width: 325,
-    left: "0%",
-    bottom: "0%",
-    resizeMode: "contain"
-  }
-});
