@@ -16,6 +16,7 @@ import {
 } from "react-navigation";
 import Login from "./components/Login";
 import CreateEvent from "./containers/CreateEvent";
+import HouseScreen from "./containers/HouseScreen";
 
 const root = createSwitchNavigator({
   Login: {

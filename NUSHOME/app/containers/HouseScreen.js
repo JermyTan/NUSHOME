@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FlatList, ActivityIndicator } from "react-native";
-import { Container, Content } from "native-base";
+import { Container } from "native-base";
 import MyHeader from "../components/header";
 import Event from "../components/Event";
 import firebase from "firebase";
@@ -12,10 +12,6 @@ export default class HouseScreen extends Component {
       events: [],
       isFetching: false
     };
-  }
-
-  renderItem(event) {
-    return <Event event={event} />;
   }
 
   getEvents() {
@@ -54,7 +50,13 @@ export default class HouseScreen extends Component {
     if (this.state.isFetching) {
       return <ActivityIndicator size="large" />;
     } else {
-      return <Event event={this.state.events[0]} />;
+      return (
+        <FlatList
+          data={this.state.events}
+          renderItem={({ item }) => <Event event={item} />}
+          keyExtractor={item => item.title}
+        />
+      );
     }
   }
 

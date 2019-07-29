@@ -3,7 +3,7 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
   Modal,
   ScrollView,
   StyleSheet
@@ -11,6 +11,8 @@ import {
 import Card from "./Card";
 import CardSection from "./CardSection";
 import Button from "./Button";
+import Input from "./Input.js";
+import { Container } from "native-base";
 import firebase from "firebase";
 
 export default class Event extends Component {
@@ -84,25 +86,16 @@ export default class Event extends Component {
     const { title, url, dateTime, venue, description } = this.props.event;
     return (
       <View>
-        <TouchableOpacity
+        <TouchableWithoutFeedback
           style={{ flex: 1 }}
           onPress={() => this.setModalVisible(!this.state.isModalVisible)}
         >
-          <Card>
+          <View>
             <CardSection>
-              <Image source={{ uri: url }} style={styles.imageStyle} />
+              <Text style={styles.titleStyle}>{title}</Text>
             </CardSection>
-            <CardSection>
-              <View style={styles.titleContainerStyle}>
-                <Text style={styles.titleStyle}>{title}</Text>
-              </View>
-              <View style={styles.detailsContainerStyle}>
-                <Text style={styles.detailsTextStyle}>{dateTime}</Text>
-                <Text style={styles.detailsTextStyle}>{venue}</Text>
-              </View>
-            </CardSection>
-          </Card>
-        </TouchableOpacity>
+          </View>
+        </TouchableWithoutFeedback>
         <Modal
           transparent={false}
           animationType="fade"
@@ -113,22 +106,42 @@ export default class Event extends Component {
               <CardSection>
                 <Image source={{ uri: url }} style={styles.modalImageStyle} />
               </CardSection>
-              <CardSection style={styles.modalTitleDetailsStyle}>
+
+              <CardSection style={styles.modalTitleContainerStyle}>
                 <Text style={styles.modalTitleStyle}>{title}</Text>
-                <Text>{dateTime}</Text>
-                <Text>{venue}</Text>
               </CardSection>
-              {this.renderSignupButton()}
+
               <CardSection>
-                <Text style={styles.modalDescriptionStyle}>{description}</Text>
+                <Input label="Date/Time" value={dateTime} />
               </CardSection>
+
+              <CardSection>
+                <Input label="Venue" value={venue} />
+              </CardSection>
+
+              <CardSection>
+                <Input label="Description" value={description} />
+              </CardSection>
+
               <CardSection>
                 <Button
                   onPress={() =>
                     this.setModalVisible(!this.state.isModalVisible)
                   }
                 >
-                  Cancel
+                  Save Changes
+                </Button>
+              </CardSection>
+
+              <CardSection>
+                <Button
+                  buttonStyle={styles.deleteButtonStyle}
+                  textStyle={styles.deleteTextStyle}
+                  onPress={() =>
+                    this.setModalVisible(!this.state.isModalVisible)
+                  }
+                >
+                  Delete
                 </Button>
               </CardSection>
             </Card>
@@ -140,48 +153,35 @@ export default class Event extends Component {
 }
 
 const styles = StyleSheet.create({
-  titleContainerStyle: {
-    justifyContent: "center"
-  },
   titleStyle: {
     fontSize: 18,
-    fontWeight: "bold",
-    paddingLeft: 10
-  },
-  imageStyle: {
-    height: 250,
-    flex: 1,
-    width: null
-  },
-  detailsContainerStyle: {
-    flex: 1,
-    justifyContent: "flex-end",
-    paddingRight: 10,
-    paddingBottom: 5
-  },
-  detailsTextStyle: {
-    textAlign: "right"
+    paddingLeft: 15
   },
   modalImageStyle: {
-    height: 500,
+    height: 400,
     flex: 1,
     width: null
   },
-  modalTitleDetailsStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: "#fff",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    flexDirection: "column",
-    borderColor: "#ddd",
-    position: "relative"
+  modalTitleContainerStyle: {
+    flexDirection: "row",
+    justifyContent: "center"
   },
-  modalTitleStyle: {
-    fontSize: 32,
-    fontWeight: "bold"
+  deleteButtonStyle: {
+    flex: 1,
+    alignSelf: "stretch",
+    backgroundColor: "#d40000",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#000",
+    marginLeft: 5,
+    marginRight: 5
   },
-  modalDescriptionStyle: {
-    fontSize: 18
+  deleteTextStyle: {
+    alignSelf: "center",
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+    paddingTop: 10,
+    paddingBottom: 10
   }
 });
