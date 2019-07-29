@@ -5,7 +5,7 @@ Proposed Level of Achievement: Apollo 11
 
 Target Audience: Students staying on NUS campus
 
-<img src="https://i.ibb.co/zbxhT5h/Poster-ms2.png"/>
+<img src="./Poster_ms3.png"/>
 
 
 ### Motivation
