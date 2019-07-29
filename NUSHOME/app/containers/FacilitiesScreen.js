@@ -9,6 +9,10 @@ export default class FacilitiesScreen extends Component {
     this.state = {};
   }
 
+  componentWillMount() {
+    alert("Page is under development");
+  }
+
   render() {
     return (
       <Container>

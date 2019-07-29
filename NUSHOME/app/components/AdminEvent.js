@@ -19,8 +19,12 @@ export default class Event extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalVisible: false
+      isModalVisible: false,
+      dateTime: this.props.event.dateTime,
+      venue: this.props.event.venue,
+      description: this.props.event.description
     };
+    this.editEvent = this.editEvent.bind(this);
   }
 
   setModalVisible(isModalVisible) {
@@ -82,6 +86,57 @@ export default class Event extends Component {
     );
   }
 
+  deleteEvent() {
+    const key = this.props.event.key;
+    console.log(key);
+    firebase
+      .database()
+      .ref(`events/${key}`)
+      .remove()
+      .then(() => {
+        console.log("Deleted");
+        this.setModalVisible(!this.state.isModalVisible);
+      })
+      .catch(() => {
+        console.log("Error encountered");
+      });
+  }
+
+  editEvent(options, text) {
+    console.log("Editing");
+    if (options === "Date/Time") {
+      this.props.event.dateTime = text;
+      this.state.dateTime = text;
+    } else if (options === "Venue") {
+      this.props.event.venue = text;
+      this.state.venue = text;
+    } else {
+      this.props.event.description = text;
+      this.state.description = text;
+    }
+  }
+
+  saveChanges() {
+    //update all possible editable fields
+    const key = this.props.event.key;
+    firebase
+      .database()
+      .ref(`events/${key}`)
+      .update({
+        Date: this.state.dateTime,
+        Description: this.state.description,
+        Venue: this.state.venue
+      })
+      .then(() => {
+        console.log("Saved and edited!");
+        this.setModalVisible(!this.state.isModalVisible);
+      })
+      .catch(() => {
+        console, log("Error sadly");
+        this.setModalVisible(!this.state.isModalVisible);
+      });
+  }
+
   render() {
     const { title, url, dateTime, venue, description } = this.props.event;
     return (
@@ -112,23 +167,31 @@ export default class Event extends Component {
               </CardSection>
 
               <CardSection>
-                <Input label="Date/Time" value={dateTime} />
+                <Input
+                  label="Date/Time"
+                  value={this.state.dateTime}
+                  onChangeText={text => this.setState({ dateTime: text })}
+                />
               </CardSection>
 
               <CardSection>
-                <Input label="Venue" value={venue} />
+                <Input
+                  label="Venue"
+                  value={this.state.venue}
+                  onChangeText={text => this.setState({ venue: text })}
+                />
               </CardSection>
 
               <CardSection>
-                <Input label="Description" value={description} />
+                <Input
+                  label="Description"
+                  value={this.state.description}
+                  onChangeText={text => this.setState({ description: text })}
+                />
               </CardSection>
 
               <CardSection>
-                <Button
-                  onPress={() =>
-                    this.setModalVisible(!this.state.isModalVisible)
-                  }
-                >
+                <Button onPress={this.saveChanges.bind(this)}>
                   Save Changes
                 </Button>
               </CardSection>
@@ -137,9 +200,7 @@ export default class Event extends Component {
                 <Button
                   buttonStyle={styles.deleteButtonStyle}
                   textStyle={styles.deleteTextStyle}
-                  onPress={() =>
-                    this.setModalVisible(!this.state.isModalVisible)
-                  }
+                  onPress={this.deleteEvent.bind(this)}
                 >
                   Delete
                 </Button>

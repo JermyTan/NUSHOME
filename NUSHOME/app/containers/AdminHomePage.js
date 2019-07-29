@@ -35,7 +35,8 @@ export default class AdminHomePage extends Component {
         url: event[k].Image,
         dateTime: event[k].Date,
         venue: event[k].Venue,
-        description: event[k].Description
+        description: event[k].Description,
+        key: event[k].Key
       };
       events.push(eventDetails);
       //check if it works first

@@ -32,7 +32,8 @@ export default class CreateEvent extends Component {
         Image: this.state.image,
         SignedUp: this.state.signedUp,
         Title: this.state.title,
-        Venue: this.state.venue
+        Venue: this.state.venue,
+        Key: this.state.title
       })
       .then(() => {
         console.log("Inserted");
