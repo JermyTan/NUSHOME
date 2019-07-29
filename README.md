@@ -26,13 +26,14 @@ No need to worry, the NUSHOME will solve all these problems! Our application is 
 The application aims to provide a common platform for all students staying in a particular NUS accommodation to efficiently and conveniently perform administrative tasks, mainly:
 
 
-### Basic Features:
+### Basic User Features:
 - Login Page - residents will have individual accounts where they can log in with their NUSNET credentials.
     - Hall/RC-specific accounts. For instance, if the user is from CAPT, their account will be under CAPT so that all the information shown will be relevant to them
 - Home Events page - Includes latest announcements and event happenings (Entire RC).
     - Latest official announcements eg (27 May dining hall close for event)
     - Event happenings eg (RC IG carnival on 1 June)
     - Updates eg (renovation from xx date to yy date)
+    - Sign up for events
 - Facilities booking page (In Progress)
     - Online booking of facilities such as Multi-purpose Sports Hall
     - Online booking of equipments such as AVA equipments for House events
@@ -42,6 +43,14 @@ The application aims to provide a common platform for all students staying in a 
     - General FAQs
 - Settings
     - Update user credentials eg (course of study, year of study, mobile number, room number, etc)
+
+### Admin Features:
+- Create events
+    - Able to create events with image, title, date/time, venue and description, and push to firebase database
+- Delete events
+    - Able to delete events in database and the change is instanteously reflected on user's end
+- Edit events
+    - Edit the date/time, venue and description of events
 
 
 ### How are we different from similar platforms?
@@ -117,8 +126,8 @@ Install `android studio` or other mobile phone emulator to test out the applicat
 To start the application, make sure you are at the same directory as `App.js` before running this on command line: `react-native run-android` after you have installed all important dependencies.
 
 ### Accounts to use:
-- For user account, please use Username: `user_test@u.nus.edu` and Password: `password`.
-- For admin account, please use Username: `admin@u.nus.edu` and Password: `password`.
+- For user account, please use Username: `user` and Password: `password`.
+- For admin account, please use Username: `admin` and Password: `password`.
 
 
 

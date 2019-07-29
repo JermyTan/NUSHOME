@@ -8,13 +8,8 @@ import {
   KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
-  AsyncStorage,
   ActivityIndicator
 } from "react-native";
-import { CardSection } from "./CardSection";
-
-//for now we hard-code a login detail before we sync it with google firebase database
-const userInfo = { username: "e0303290", password: "password123" };
 
 export default class Login extends Component {
   constructor(props) {
@@ -50,7 +45,8 @@ export default class Login extends Component {
   }
 
   _login() {
-    const { username, password, loading } = this.state;
+    let { username, password, loading } = this.state;
+    username += "@u.nus.edu";
     this.setState({ loading: true });
     firebase
       .auth()
