@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Modal,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  SafeAreaView
 } from "react-native";
 import Card from "./Card";
 import CardSection from "./CardSection";
@@ -108,31 +109,35 @@ export default class Event extends Component {
           animationType="fade"
           visible={this.state.isModalVisible}
         >
-          <ScrollView>
-            <Card>
-              <CardSection>
-                <Image source={{ uri: url }} style={styles.modalImageStyle} />
-              </CardSection>
-              <CardSection style={styles.modalTitleDetailsStyle}>
-                <Text style={styles.modalTitleStyle}>{title}</Text>
-                <Text>{dateTime}</Text>
-                <Text>{venue}</Text>
-              </CardSection>
-              {this.renderSignupButton()}
-              <CardSection>
-                <Text style={styles.modalDescriptionStyle}>{description}</Text>
-              </CardSection>
-              <CardSection>
-                <Button
-                  onPress={() =>
-                    this.setModalVisible(!this.state.isModalVisible)
-                  }
-                >
-                  Cancel
-                </Button>
-              </CardSection>
-            </Card>
-          </ScrollView>
+          <SafeAreaView>
+            <ScrollView>
+              <Card>
+                <CardSection>
+                  <Image source={{ uri: url }} style={styles.modalImageStyle} />
+                </CardSection>
+                <CardSection style={styles.modalTitleDetailsStyle}>
+                  <Text style={styles.modalTitleStyle}>{title}</Text>
+                  <Text>{dateTime}</Text>
+                  <Text>{venue}</Text>
+                </CardSection>
+                {this.renderSignupButton()}
+                <CardSection>
+                  <Text style={styles.modalDescriptionStyle}>
+                    {description}
+                  </Text>
+                </CardSection>
+                <CardSection>
+                  <Button
+                    onPress={() =>
+                      this.setModalVisible(!this.state.isModalVisible)
+                    }
+                  >
+                    Cancel
+                  </Button>
+                </CardSection>
+              </Card>
+            </ScrollView>
+          </SafeAreaView>
         </Modal>
       </View>
     );

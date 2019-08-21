@@ -30,7 +30,6 @@ export default class Login extends Component {
       return (
         <TouchableOpacity
           style={styles.buttonContainer}
-          //onPress={() => this.props.navigation.navigate("Home")}
           onPress={this._login.bind(this)}
         >
           <Text styles={styles.buttonText}>LOGIN</Text>
@@ -52,7 +51,6 @@ export default class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(username, password)
       .then(user => {
-        //AsyncStorage.setItem("isLoggedIn", "1");
         if (username === "admin@u.nus.edu" && password === "password") {
           this.props.navigation.navigate("Admin");
         } else {

@@ -6,7 +6,8 @@ import {
   TouchableWithoutFeedback,
   Modal,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  SafeAreaView
 } from "react-native";
 import Card from "./Card";
 import CardSection from "./CardSection";
@@ -156,57 +157,59 @@ export default class Event extends Component {
           animationType="fade"
           visible={this.state.isModalVisible}
         >
-          <ScrollView>
-            <Card>
-              <CardSection>
-                <Image source={{ uri: url }} style={styles.modalImageStyle} />
-              </CardSection>
+          <SafeAreaView>
+            <ScrollView>
+              <Card>
+                <CardSection>
+                  <Image source={{ uri: url }} style={styles.modalImageStyle} />
+                </CardSection>
 
-              <CardSection style={styles.modalTitleContainerStyle}>
-                <Text style={styles.modalTitleStyle}>{title}</Text>
-              </CardSection>
+                <CardSection style={styles.modalTitleContainerStyle}>
+                  <Text style={styles.modalTitleStyle}>{title}</Text>
+                </CardSection>
 
-              <CardSection>
-                <Input
-                  label="Date/Time"
-                  value={this.state.dateTime}
-                  onChangeText={text => this.setState({ dateTime: text })}
-                />
-              </CardSection>
+                <CardSection>
+                  <Input
+                    label="Date/Time"
+                    value={this.state.dateTime}
+                    onChangeText={text => this.setState({ dateTime: text })}
+                  />
+                </CardSection>
 
-              <CardSection>
-                <Input
-                  label="Venue"
-                  value={this.state.venue}
-                  onChangeText={text => this.setState({ venue: text })}
-                />
-              </CardSection>
+                <CardSection>
+                  <Input
+                    label="Venue"
+                    value={this.state.venue}
+                    onChangeText={text => this.setState({ venue: text })}
+                  />
+                </CardSection>
 
-              <CardSection>
-                <Input
-                  label="Description"
-                  value={this.state.description}
-                  onChangeText={text => this.setState({ description: text })}
-                />
-              </CardSection>
+                <CardSection>
+                  <Input
+                    label="Description"
+                    value={this.state.description}
+                    onChangeText={text => this.setState({ description: text })}
+                  />
+                </CardSection>
 
-              <CardSection>
-                <Button onPress={this.saveChanges.bind(this)}>
-                  Save Changes
-                </Button>
-              </CardSection>
+                <CardSection>
+                  <Button onPress={this.saveChanges.bind(this)}>
+                    Save Changes
+                  </Button>
+                </CardSection>
 
-              <CardSection>
-                <Button
-                  buttonStyle={styles.deleteButtonStyle}
-                  textStyle={styles.deleteTextStyle}
-                  onPress={this.deleteEvent.bind(this)}
-                >
-                  Delete
-                </Button>
-              </CardSection>
-            </Card>
-          </ScrollView>
+                <CardSection>
+                  <Button
+                    buttonStyle={styles.deleteButtonStyle}
+                    textStyle={styles.deleteTextStyle}
+                    onPress={this.deleteEvent.bind(this)}
+                  >
+                    Delete
+                  </Button>
+                </CardSection>
+              </Card>
+            </ScrollView>
+          </SafeAreaView>
         </Modal>
       </View>
     );
