@@ -62,7 +62,7 @@ export default class AdminHomePage extends Component {
         <FlatList
           data={this.state.events}
           renderItem={({ item }) => <AdminEvent event={item} />}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.key}
         />
       );
     }

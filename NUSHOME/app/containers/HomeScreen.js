@@ -55,7 +55,7 @@ export default class HomeScreen extends Component {
         <FlatList
           data={this.state.events}
           renderItem={({ item }) => <Event event={item} />}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.key}
         />
       );
     }

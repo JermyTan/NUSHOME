@@ -64,7 +64,7 @@ export default class SignedUpEventsPage extends Component {
         <FlatList
           data={this.state.events}
           renderItem={({ item }) => <SignedUpEvent event={item} />}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.key}
         />
       );
     }

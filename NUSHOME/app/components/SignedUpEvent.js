@@ -26,32 +26,12 @@ export default class SignedUpEvent extends Component {
     this.setState({ isModalVisible: isModalVisible });
   }
 
-  //update the isSignedUp attribute in the database
-  hasSignedUp() {
-    const title = this.props.event.title;
-    //connect to firebase using title as the title is the key for the event
-    firebase
-      .database()
-      .ref(`events/${title}`)
-      .update({
-        SignedUp: true
-      })
-      .then(() => {
-        //set the this.props.event.SignedUp to true
-        this.setModalVisible(!this.state.isModalVisible);
-        this.props.event.isSignedUp = true;
-      })
-      .catch(() => {
-        console.log("Something bad happened");
-      });
-  }
   //update isSignedUp attribute in the database to false
   withdrawEvent() {
-    const title = this.props.event.title;
     //connect to firebase
     firebase
       .database()
-      .ref(`events/${title}`)
+      .ref(`events/${this.props.event.key}`)
       .update({
         SignedUp: false
       })
@@ -65,18 +45,10 @@ export default class SignedUpEvent extends Component {
       });
   }
 
-  renderSignupButton() {
-    if (this.props.event.isSignedUp) {
-      return (
-        <CardSection>
-          <Button onPress={this.withdrawEvent.bind(this)}>Withdraw</Button>
-        </CardSection>
-      );
-    }
-
+  renderWithdrawButton() {
     return (
       <CardSection>
-        <Button onPress={this.hasSignedUp.bind(this)}>Sign Up</Button>
+        <Button onPress={this.withdrawEvent.bind(this)}>Withdraw</Button>
       </CardSection>
     );
   }
@@ -111,7 +83,7 @@ export default class SignedUpEvent extends Component {
                   <Text>{dateTime}</Text>
                   <Text>{venue}</Text>
                 </CardSection>
-                {this.renderSignupButton()}
+                {this.renderWithdrawButton()}
                 <CardSection>
                   <Text style={styles.modalDescriptionStyle}>
                     {description}
