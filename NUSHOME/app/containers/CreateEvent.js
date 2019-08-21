@@ -23,30 +23,36 @@ export default class CreateEvent extends Component {
   }
 
   updateDatabase() {
-    firebase
-      .database()
-      .ref(`events/${this.state.title}`)
-      .set({
-        Date: this.state.date,
-        Description: this.state.description,
-        Image: this.state.image,
-        SignedUp: this.state.signedUp,
-        Title: this.state.title,
-        Venue: this.state.venue,
-        Key: this.state.title
-      })
-      .then(() => {
-        console.log("Inserted");
-      })
-      .catch(() => {
-        console.log("Error");
-      });
-    Alert.alert(
-      "Event Created",
-      "Click Ok to head back to Admin Page!",
-      [{ text: "OK", onPress: () => this.props.navigation.navigate("Admin") }],
-      { cancelable: false }
-    );
+    if (this.state.title == "" || this.state.description == "") {
+      alert("Please input the title or description before creating the event!");
+    } else {
+      firebase
+        .database()
+        .ref(`events/${this.state.title}`)
+        .set({
+          Date: this.state.date,
+          Description: this.state.description,
+          Image: this.state.image,
+          SignedUp: this.state.signedUp,
+          Title: this.state.title,
+          Venue: this.state.venue,
+          Key: this.state.title
+        })
+        .then(() => {
+          console.log("Inserted");
+        })
+        .catch(() => {
+          console.log("Error");
+        });
+      Alert.alert(
+        "Event Created",
+        "Click Ok to head back to Admin Page!",
+        [
+          { text: "OK", onPress: () => this.props.navigation.navigate("Admin") }
+        ],
+        { cancelable: false }
+      );
+    }
   }
 
   render() {
