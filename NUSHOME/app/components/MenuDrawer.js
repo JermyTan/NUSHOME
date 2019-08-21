@@ -32,7 +32,8 @@ export default class MenuDrawer extends Component {
             source={require("../assets/images/CAPT_logo.png")}
             style={{
               width: WIDTH * 0.65,
-              flex: 1
+              flex: 1,
+              resizeMode: "contain"
             }}
           />
         </View>
@@ -50,7 +51,7 @@ export default class MenuDrawer extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "grey"
+    backgroundColor: "#74273F"
   },
   topLinks: {
     height: HEIGHT * 0.25
