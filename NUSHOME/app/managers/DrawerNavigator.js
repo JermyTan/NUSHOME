@@ -3,9 +3,6 @@ import { Platform, Dimensions } from "react-native";
 import { createDrawerNavigator, createAppContainer } from "react-navigation";
 
 import HomeScreen from "../containers/HomeScreen";
-import HouseScreen from "../containers/HouseScreen";
-import InterestGroupsScreen from "../containers/InterestGroupsScreen";
-import EventsScreen from "../containers/EventsScreen";
 import FacilitiesScreen from "../containers/FacilitiesScreen";
 import FAQScreen from "../containers/FAQScreen";
 import SettingsScreen from "../containers/SettingsScreen";
