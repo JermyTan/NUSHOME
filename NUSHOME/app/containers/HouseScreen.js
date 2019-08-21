@@ -34,7 +34,8 @@ export default class HouseScreen extends Component {
         url: event[k].Image,
         dateTime: event[k].Date,
         venue: event[k].Venue,
-        description: event[k].Description
+        description: event[k].Description,
+        key: event[k].Key
       };
       events.push(eventDetails);
       //check if it works first
@@ -54,7 +55,7 @@ export default class HouseScreen extends Component {
         <FlatList
           data={this.state.events}
           renderItem={({ item }) => <Event event={item} />}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.key}
         />
       );
     }

@@ -77,7 +77,7 @@ export default class SignedUpEventsPage extends Component {
           <Text style={styles.title}>My Signed-Up Events</Text>
           {this.renderPage()}
           <CardSection>
-            <Button onPress={() => this.props.navigate("Settings")}>
+            <Button onPress={() => this.props.navigation.navigate("Settings")}>
               Back
             </Button>
           </CardSection>

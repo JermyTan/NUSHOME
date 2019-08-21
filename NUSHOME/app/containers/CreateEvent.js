@@ -32,7 +32,7 @@ export default class CreateEvent extends Component {
           Date: this.state.date,
           Description: this.state.description,
           Image: this.state.image,
-          SignedUp: this.state.signedUp,
+          SignedUp: false,
           Title: this.state.title,
           Venue: this.state.venue,
           Key: this.state.title
@@ -93,15 +93,6 @@ export default class CreateEvent extends Component {
                 label="Image URL"
                 onChangeText={image => this.setState({ image })}
                 value={this.state.image}
-              />
-            </CardSection>
-            <CardSection>
-              <ToggleInput
-                label="Allow Event SignUps"
-                onValueChange={value => {
-                  this.setState({ signedUp: value });
-                }}
-                value={this.state.signedUp}
               />
             </CardSection>
             <CardSection>

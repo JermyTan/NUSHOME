@@ -16,6 +16,7 @@ import {
 } from "react-navigation";
 import Login from "./components/Login";
 import CreateEvent from "./containers/CreateEvent";
+import ViewEvent from "./containers/SignedUpEventsPage";
 
 const root = createSwitchNavigator({
   Login: {
@@ -26,6 +27,9 @@ const root = createSwitchNavigator({
   },
   CreateEvent: {
     screen: CreateEvent
+  },
+  ViewEvent: {
+    screen: ViewEvent
   },
   default: DrawerNavigator
 });

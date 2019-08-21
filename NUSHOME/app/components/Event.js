@@ -28,11 +28,11 @@ export default class Event extends Component {
 
   //update the isSignedUp attribute in the database
   hasSignedUp() {
-    const title = this.props.event.title;
+    const key = this.props.event.key;
     //connect to firebase using title as the title is the key for the event
     firebase
       .database()
-      .ref(`events/${title}`)
+      .ref(`events/${key}`)
       .update({
         SignedUp: true
       })
@@ -47,11 +47,11 @@ export default class Event extends Component {
   }
   //update isSignedUp attribute in the database to false
   withdrawEvent() {
-    const title = this.props.event.title;
+    const key = this.props.event.key;
     //connect to firebase
     firebase
       .database()
-      .ref(`events/${title}`)
+      .ref(`events/${key}`)
       .update({
         SignedUp: false
       })

@@ -23,7 +23,8 @@ export default class Event extends Component {
       isModalVisible: false,
       dateTime: this.props.event.dateTime,
       venue: this.props.event.venue,
-      description: this.props.event.description
+      description: this.props.event.description,
+      title: this.props.event.title
     };
     this.editEvent = this.editEvent.bind(this);
   }
@@ -124,6 +125,7 @@ export default class Event extends Component {
       .database()
       .ref(`events/${key}`)
       .update({
+        Title: this.state.title,
         Date: this.state.dateTime,
         Description: this.state.description,
         Venue: this.state.venue
@@ -164,10 +166,12 @@ export default class Event extends Component {
                   <Image source={{ uri: url }} style={styles.modalImageStyle} />
                 </CardSection>
 
-                <CardSection style={styles.modalTitleContainerStyle}>
-                  <Text style={styles.modalTitleStyle}>{title}</Text>
-                </CardSection>
-
+                <CardSection />
+                <Input
+                  label="Title"
+                  value={this.state.title}
+                  onChangeText={text => this.setState({ title: text })}
+                />
                 <CardSection>
                   <Input
                     label="Date/Time"
